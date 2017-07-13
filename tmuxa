@@ -1,2 +1,6 @@
 #!/bin/dash
-tmux attach -d -t $(tmux ls | fzf --reverse -e --prompt=">" --header="Choose a tmux session to attach" | cut -f1 -d:)
+if [ $(tmux ls | wc -l) -gt 0 ]; then
+  tmux attach -d -t $(tmux ls | fzf --reverse -e --prompt=">" --header="Choose a tmux session to attach" | cut -f1 -d:)
+else
+  tmux
+fi
