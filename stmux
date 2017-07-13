@@ -1,0 +1,7 @@
+#!/bin/dash
+if [ -z $@ ] && [ $(tmux ls | grep -v attached | wc -l) -gt 0 ] ; then
+	exec st -f "xos4 Terminus:size=12" tmuxa
+else 
+	export SHELL=/usr/bin/tmux
+	exec st -f "xos4 Terminus:size=12" $@
+fi
