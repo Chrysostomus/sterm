@@ -1,3 +1,7 @@
 #!/bin/dash
 export SHELL=/usr/bin/tmux
-exec st -f "xos4 Terminus:size=12" $@
+if ! [ -f "$HOME/.sterminalrc" ]; then
+	cp /usr/share/sterminal/sterminalrc $HOME/.sterminalrc
+fi
+. $HOME/.sterminalrc
+exec st -t "Sterminal" -f "$font" $@
