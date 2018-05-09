@@ -1,7 +1,18 @@
 #!/bin/dash
-export SHELL=/usr/bin/tmux
 if ! [ -f "$HOME/.sterminalrc" ]; then
 	cp /usr/share/sterminal/sterminalrc $HOME/.sterminalrc
 fi
 . $HOME/.sterminalrc
-exec st -t "Sterminal" -f "$font" $@
+
+_trap_exit() 
+{ 
+tmux kill-session -t $$; 
+}
+
+trap _trap_exit EXIT QUIT INT 30
+
+if ! [ -z "$@" ]; then
+	st -t "Sterminal" -f "$font" "$@"
+else
+	st -t "Sterminal" -f "$font" tmux new-session -s $$
+fi
