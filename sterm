@@ -14,5 +14,6 @@ trap _trap_exit EXIT QUIT INT 30
 if ! [ -z "$@" ]; then
 	st -t "Sterminal" -f "$font" "$@"
 else
+	[ -z "$LANG" ] && export LANG="en_US.utf8"
 	st -t "Sterminal" -f "$font" tmux new-session -s $$
 fi
