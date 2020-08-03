@@ -9,11 +9,10 @@ _trap_exit()
 tmux kill-session -t $$; 
 }
 
-trap _trap_exit EXIT QUIT INT 30
-
-if ! [ -z "$@" ]; then
+if [ -n "$*" ]; then
 	st -t "Sterminal" -f "$font" "$@"
 else
+	trap _trap_exit EXIT QUIT INT 30
 	[ -z "$LANG" ] && export LANG="en_US.utf8"
 	st -t "Sterminal" -f "$font" tmux new-session -s $$
 fi
