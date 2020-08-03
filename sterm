@@ -1,8 +1,8 @@
 #!/bin/dash
 if ! [ -f "$HOME/.sterminalrc" ]; then
-	cp /usr/share/sterminal/sterminalrc $HOME/.sterminalrc
+	cp /usr/share/sterminal/sterminalrc "$HOME/.sterminalrc"
 fi
-. $HOME/.sterminalrc
+. "$HOME/.sterminalrc"
 
 _trap_exit() 
 { 
@@ -12,7 +12,7 @@ tmux kill-session -t $$;
 if [ -n "$*" ]; then
 	st -t "Sterminal" -f "$font" "$@"
 else
-	trap _trap_exit EXIT QUIT INT 30
+	trap _trap_exit EXIT QUIT INT PWR
 	[ -z "$LANG" ] && export LANG="en_US.utf8"
 	st -t "Sterminal" -f "$font" tmux new-session -s $$
 fi
