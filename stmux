@@ -1,7 +1,7 @@
 #!/bin/dash
-if [ -z $@ ]; then
+if [ -z "$*" ]; then
 	exec st -f "xos4 Terminus:size=12" tmuxa
 else 
 	export SHELL=/usr/bin/tmux
-	exec st -f "xos4 Terminus:size=12" $@
+	exec st -f "xos4 Terminus:size=12" "$@"
 fi
